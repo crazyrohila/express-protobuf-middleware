@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package drupalApi;
+
+message ApiResponse {
+  Asset jsonapi = 1;
+  message Asset {
+    string version = 1;
+    Asset meta = 2;
+    message Asset {
+       string link = 1;
+    }
+  }
+}
