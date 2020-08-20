@@ -1,9 +1,12 @@
 let dummy_data = {
     jsonapi: {
-        version: '1.0',
-        meta: {
-            link: "test"
-        }
+        version_id: 'version test',
+        meta: [{
+            link: "test1"
+        },
+        {
+            link: "test2"
+        }]
     }
 };
 

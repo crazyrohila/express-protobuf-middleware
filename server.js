@@ -1,7 +1,8 @@
 const express = require('express');
-const PROTO_PATH = __dirname + '/proto/awesome.proto';
 var protobuf = require("protobufjs");
 let {dummy_data} = require('./data.js');
+
+var jsonDescriptor = require("./proto/awesome.json");
 
 const app = express();
 
@@ -12,10 +13,9 @@ app.get('/protoApi', async function (req, res) {
 });
 
 async function buildProto() {
-  const {err, root} = await protobuf.load(PROTO_PATH);
-  if (err) {throw err;}
+  var root = protobuf.Root.fromJSON(jsonDescriptor);
 
-  const ApiResponse = root.lookupType("drupalApi.ApiResponse");
+  const ApiResponse = root.lookupType("ApiResponse");
 
   let ApiResponseMessage = ApiResponse.create(dummy_data);
   console.log(`message = ${JSON.stringify(ApiResponseMessage)}`);
